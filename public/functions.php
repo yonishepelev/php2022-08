@@ -1,4 +1,7 @@
 <?php
+
+require_once ('./helpers.php');
+print_rr(232);
 error_reporting(E_ALL);
 $a = 4;
 $b = 6;
@@ -13,6 +16,8 @@ echo('<br>');
 print_r($f);
 $g = multiplyNumber(256,2467);
 print_r($g);
+
+print_rr($g);
 
 function multiplyNumber(float $firstNumber, float $secondNumber): float
 {
