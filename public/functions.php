@@ -21,6 +21,8 @@ print_rr($g);
 
 function multiplyNumber(float $firstNumber, float $secondNumber): float
 {
+
+
     $a = "sdfgs";
     print_r($a);
     echo("<br> I am working <br>");
