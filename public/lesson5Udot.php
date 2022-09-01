@@ -14,7 +14,7 @@ $numbers = range(10,20);
 print_rr('число '.$numbers[0]);
 print_rr('число '.$numbers[1]);
 print_rr('число '.$numbers[2]);
-for ( $i = 0; $i < count($numbers); $i++){
+for ( $i = 0; $i < count($numbers); $i++){ // в цикле считаем колличество элементов в массиве.
     print_rr('число '.$numbers[$i]);
 }
 $numbers2 = [];
