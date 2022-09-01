@@ -1,13 +1,13 @@
 <?php
 error_reporting(E_ALL);
 require_once('./helpers.php');
-$odd = [];
+$odd = [];// создание пустова массива
 $even = [];
 for ($i = 1; $i <= 100; $i = $i + 2) {
-    $odd[] = $i;
+    $odd[] = $i;//добавляет в массив нечетные числа
 }
 for ($i = 2; $i <= 100; $i = $i + 2) {
-    $even[] = $i;
+    $even[] = $i;// добавляет в массив четные числа.
 }
 print_rr($even);
 
