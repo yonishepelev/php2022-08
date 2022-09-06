@@ -2,19 +2,43 @@
 error_reporting(E_ALL);
 require_once ('./helpers.php');
 $sellers = ['tipanova'=>['gena'], 'zhukova'=>['aleksey'], 'ozerki'=>['nadya']];
-//print_rr($sellers);
+priint_rr($sellers);
+$newSeller= 'petya';
+
+//$key = 'tipanova';
+//$sellers[$key][] = $newSeller;
+//$key = 'zhukova';
+//$sellers[$key][]= $newSeller;
+//$key = 'ozerki';
+//$sellers[$key][]= $newSeller;
+
+
+foreach ($sellers as $key=>$value){
+    print_rr('magazin '. $key);
+    $sellers[$key][]= $newSeller;
+}
+
+print_rr($sellers);
 //magazin tipanova
-$newSeller = 'petya';
-foreach ($sellers as $key => $value){
-    //print_rr('magazin ' . $key);
-}
-$sellers['tipanova'][]= 'petya';
-$sellers['zhukova'][]= 'petya';
-$sellers['ozerky'][]= 'petya';
+// prodavez 1 gena
+// prodavez 2 petya
+//print_rr('prodavez 1 '.$sellers['tipanova'][0]);
+//print_rr('prodavez 2 '.$sellers['tipanova'][1]);
+//
+//print_rr('prodavez 1 '.$sellers['zhukova'][0]);
+//print_rr('prodavez 2 '.$sellers['zhukova'][1]);
+//
+//print_rr('prodavez 1 '.$sellers['ozerki'][0]);
+//print_rr('prodavez 2 '.$sellers['ozerki'][1]);
 
-foreach ($sellers as $key => $value) {
-$sellers[$key][] = $newSeller;
-}
-//print_rr($sellers);
+foreach ($sellers as $storeName=> $salePersons){
+    //print_rr($storeName);
+    print_rr('magazin '. $storeName);
+    foreach ($salePersons as $key=>$personName) {
+        //  print_rr($key);
+        //print_rr($personName);
+        print_rr('prodavez '.($key+1).' '.$personName);
+        print_rr('prodavez '.($key+1).' '.$sellers[$storeName][$key]);
+    }
 
-$sellers['tipanova'][0,1];
+}
