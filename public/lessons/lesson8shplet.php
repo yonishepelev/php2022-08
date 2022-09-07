@@ -42,7 +42,7 @@ function extractAppleSamsung($response, array &$appleArray, array &$samsungArray
         if ($brand === 'samsung') {
             $samsungArray[] = $product;
         }
-    }
+    }//print_rr($appleArray);
 }
 
 function indexdByBCategoryBrand($response)
