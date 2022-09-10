@@ -18,15 +18,15 @@ $samsungArr = [];
 
 
 extractAppleSamsung($response, $appleArr, $samsungArr);
-print_rr($appleArr);
-print_rr($samsungArr);
+//print_rr($appleArr);
+//print_rr($samsungArr);
 
 function extractAppleSamsung($response, array &$appleArray, array &$samsungArray)
 {
         foreach ($response['products'] as $product){
             if($product['brand'] ===  'apple'|| $product['brand'] === 'APPle'){
                 $appleArray []= $product;
-                print_rr($appleArray);
+                //print_rr($appleArray);
             }
             if($product['brand'] === 'samsung'){
                 $samsungArray [] =$product;
