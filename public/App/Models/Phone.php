@@ -4,27 +4,29 @@ namespace App\Models;
 
 class Phone
 {
-    protected string $model;
+    private string $model;
     protected string $brand;
     protected float $price;
     protected string $color;
     protected string $weight;
 
-    public function __construct($brand, $price, $color, $weight)
+    public function __construct ($brand, $price, $color, $weight)
     {
         $this->brand = $brand;
         $this->price = $price;
         $this->color = $color;
         $this->weight = $weight;
 
+
     }
 
-    public function ring()
+
+    public function ring(): void
     { //не нужный с точки зрения программирования метод
         echo "I'm phone. I can ring";
     }
 
-    public function getModel()
+    public function getModel(): string
     {
         return $this->model;
     }
@@ -34,12 +36,17 @@ class Phone
      * @param string $model Модель телефона
      * @return void
      */
-    public function setModel(string $model)
+    public function setModel(string $model): void
     {
         $this->model = $model;
+
     }
-    public function printInfo(){
+
+    public function printInfo(): void
+    {
         echo "Телефон $this->brand $this->model стоит $$this->price ";
+
+        //return "Телефон $this->brand $this->model стоит $$this->price ";
     }
 
 
