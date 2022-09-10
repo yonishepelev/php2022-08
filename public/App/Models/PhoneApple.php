@@ -9,4 +9,8 @@ class PhoneApple extends Phone
 
         parent::__construct('Apple', $price, $color, $weight);
     }
+    public function getColor(): string
+    {
+        return $this->color;
+    }
 }
