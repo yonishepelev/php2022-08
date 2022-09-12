@@ -18,3 +18,4 @@ function divideNum(float $firstNumber, float $secondNumber): float
 {
     return $firstNumber / $secondNumber;
 }
+

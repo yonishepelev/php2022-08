@@ -5,6 +5,7 @@ namespace App\Models;
 class PhoneKolosov extends Phone
 {
 
+    static int $box = 5;
     protected int $length;
     protected int $width;
     protected int $height;
@@ -22,6 +23,27 @@ class PhoneKolosov extends Phone
         $this->height = $height;
     }
 
+    public function getBox(): int
+    {
+        return self::$box;
+    }
+
+    public function setBox(int $number): void
+    {
+        self::$box = $number;
+    }
+
+
+    public function getVolume()
+    {
+        $volume = $this->length * $this->width * $this->height;
+        return $volume;
+    }
+
+    public static function getPlace(): string
+    {
+        return self::$box.' Рыбацкий 10';
+    }
 
 
 }
