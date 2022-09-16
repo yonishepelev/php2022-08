@@ -29,19 +29,22 @@ class Router
     {
         return self::$routes;
     }
-    public static function setRoute($uri, $callback){
+    public static function setRoute($pattern, $callback){
         self::$routes[] = [
-            'uri'=>$uri,
+            'pattern'=>$pattern,
             'callback'=>$callback
         ];
     }
     public function goRoute($currentUri){
         foreach (self::$routes as $route){
-            if ($route['uri'] === $currentUri){
+            $pattern = "/^".preg_quote($route['pattern'],'/')."\/?$/";
+            //print_rr ($pattern);
+            if (preg_match ($pattern, $currentUri) === 1){
                 $route['callback']();
                 return;
             }
         }
+        http_response_code (404);
         echo '404 Упс адрес не найден';
 
     }
