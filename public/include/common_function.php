@@ -1,7 +1,7 @@
 <?php
 
 define('SERVER_ROOT', $_SERVER['DOCUMENT_ROOT']);
-
+require_once '../vendor/autoload.php';
 
 require_once SERVER_ROOT.'/lessons/helpers.php';
 //echo 'I am common function';
