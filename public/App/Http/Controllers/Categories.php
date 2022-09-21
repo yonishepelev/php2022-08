@@ -15,7 +15,10 @@ class Categories
             $arrayAllCategories = $categories->getAllCategories ();
             //print_rr ( 'Я контроллер категорий');
             //print_rr ($arrayAllCategories);
-            echo $blade->make('homepage', ['header' => 'Список категорий'])->render();
+            echo $blade->make('categories', [
+                'title' => 'Список категорий',
+                'arrayAllCategories'=> $arrayAllCategories
+            ])->render();
 
         }
 }
