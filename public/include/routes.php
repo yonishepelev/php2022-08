@@ -11,4 +11,8 @@ Router::setRoute ("/categories", function (){
     $controller = new Categories();
     $controller->get ();
 });
+Router::setRoute ("/category/{categoryName}", function ($matches){ // http://localhost:8000/laptops
+    echo 'я страница конкретной категории '.$matches[1];
+
+});
 

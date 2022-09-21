@@ -39,8 +39,15 @@ class Router
         foreach (self::$routes as $route){
             $pattern = "/^".preg_quote($route['pattern'],'/')."\/?$/";
             //print_rr ($pattern);
-            if (preg_match ($pattern, $currentUri) === 1){
-                $route['callback']();
+            $pattern = str_replace ('\{','{', $pattern);
+            $pattern = str_replace ('\}','}', $pattern);
+            $pattern = preg_replace  ("/\{[a-zA-Z]+\}/", '(.+)', $pattern);
+
+            if (preg_match ($pattern, $currentUri, $matches) === 1){
+              //  print_rr ($pattern);
+              //  print_rr ($currentUri);
+              //  print_rr ($matches);
+                $route['callback']($matches);
                 return;
             }
         }
