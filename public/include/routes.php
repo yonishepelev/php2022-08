@@ -3,16 +3,17 @@
 use App\Http\Controllers\Categories;
 use App\Tools\Router;
 
-Router::setRoute ('/', function (){
+Router::setRoute ( '/', function () {
     echo 'Привет я главная страница';
-});
-Router::setRoute ("/categories", function (){
+} );
+Router::setRoute ( "/categories", function () { //http://localhost:8000/categories
     //echo 'Привет я страница категорий';
     $controller = new Categories();
-    $controller->get ();
-});
-Router::setRoute ("/category/{categoryName}", function ($matches){ // http://localhost:8000/laptops
-    echo 'я страница конкретной категории '.$matches[1];
-
-});
+    $controller->getAllCategories ();
+} );
+Router::setRoute ( "/category/{categoryName}", function ($matches) { // http://localhost:8000/category/laptops
+    //echo 'я страница конкретной категории ' . $matches[1];
+    $controller = new Categories();
+    $controller->getCategoryItems ($matches[1]);
+} );
 

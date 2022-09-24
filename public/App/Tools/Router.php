@@ -41,7 +41,7 @@ class Router
             //print_rr ($pattern);
             $pattern = str_replace ('\{','{', $pattern);
             $pattern = str_replace ('\}','}', $pattern);
-            $pattern = preg_replace  ("/\{[a-zA-Z]+\}/", '(.+)', $pattern);
+            $pattern = preg_replace  ("/\{[a-zA-Z0-9]+\}/", '(.+)', $pattern);
 
             if (preg_match ($pattern, $currentUri, $matches) === 1){
               //  print_rr ($pattern);

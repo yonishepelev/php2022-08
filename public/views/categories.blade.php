@@ -4,7 +4,7 @@
     <div>
         <div class="list-group">
         @foreach($arrayAllCategories as $categoryName)
-           <a href="#" class="list-group-item list-group-item-action">{{$categoryName}}</a>
+           <a href="http://localhost:8000/category/{{$categoryName}}" class="list-group-item list-group-item-action">{{$categoryName}}</a>
         @endforeach
         </div>
     </div>

@@ -13,4 +13,11 @@ class DummyCategories
 
     }
 
+    public function categoryItems($selectedCategory){
+        $url = 'https://dummyjson.com/products/category/'.$selectedCategory;
+        $data = file_get_contents ( $url );
+        return json_decode ($data);
+
+    }
+
 }
