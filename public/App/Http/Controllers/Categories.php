@@ -28,10 +28,10 @@ class Categories
         $blade = new Blade( 'views', 'cache' );
         $categories = new DummyCategories();
         $categoryItems = $categories->categoryItems ($selectedCategory);
-        print_rr ($categoryItems->products);
+        print_rr ($categoryItems->products[0]);
         echo $blade->make ( 'category-items', [
             'title' => 'Список товаров в категории '.$selectedCategory,
-            'categoryItems' => $categoryItems->products
+            'products' => $categoryItems->products
         ] )->render ();
 
 
