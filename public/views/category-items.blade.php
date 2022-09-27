@@ -8,7 +8,7 @@
         @foreach($products as $product)
             <div class="pb-4 row">
                 <div class="col-5 p-3">
-                    <div class="fw-bold fs-4">{{$product->title}}</div>
+                    <div class="fw-bold fs-4"><a href="/product/{{$product->id}}">{{$product->title}}</a></div>
                     <div>Price: ${{$product->price}}</div>
                     <div>
                         @if($product->stock > 0)

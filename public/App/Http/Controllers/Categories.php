@@ -36,4 +36,16 @@ class Categories
 
 
     }
+
+    public function getProduct($productId)
+    {
+        $blade = new Blade( 'views', 'cache' );
+        $categories = new DummyCategories();
+        $product = $categories->product ($productId);
+        print_rr ($product);
+        echo $blade->make ( 'product', [
+            'title' => $product->title,
+            'product' => $product
+        ] )->render ();
+    }
 }

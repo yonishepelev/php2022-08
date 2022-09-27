@@ -20,4 +20,12 @@ class DummyCategories
 
     }
 
+    public function product($productId)
+    {
+        $url = 'https://dummyjson.com/products/'.$productId;
+        $data = file_get_contents ( $url );
+        return json_decode ($data);
+
+    }
+
 }

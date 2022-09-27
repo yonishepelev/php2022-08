@@ -17,3 +17,9 @@ Router::setRoute ( "/category/{categoryName}", function ($matches) { // http://l
     $controller->getCategoryItems ($matches[1]);
 } );
 
+Router::setRoute ( "/product/{productId}", function ($matches) { // http://localhost:8000/product/11
+
+    $controller = new Categories();
+    $controller->getProduct ($matches[1]);
+} );
+
