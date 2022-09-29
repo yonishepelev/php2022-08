@@ -23,3 +23,7 @@ Router::setRoute ( "/product/{productId}", function ($matches) { // http://local
     $controller->getProduct ($matches[1]);
 } );
 
+Router::setRoute ( "/all-products", function () { //http://localhost:8000/all-products
+    $controller = new Categories();
+    $controller->getAllProducts ();
+} );

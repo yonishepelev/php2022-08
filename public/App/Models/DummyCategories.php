@@ -28,4 +28,11 @@ class DummyCategories
 
     }
 
+    public function allProducts($skip = 0)
+    {
+        $url = 'https://dummyjson.com/products?skip='.$skip;
+        $data = file_get_contents ( $url );
+        return json_decode ($data);
+    }
+
 }

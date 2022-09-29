@@ -48,4 +48,22 @@ class Categories
             'product' => $product
         ] )->render ();
     }
+
+    public function getAllProducts()
+    {
+        $blade = new Blade( 'views', 'cache' );
+        $categories = new DummyCategories();
+        if(isset($_GET['page']))
+            $page = $_GET['page'];
+        else
+            $page = 1;
+
+        $skip = ($page-1)*30;
+        $response = $categories->allProducts ($skip);
+
+        echo $blade->make ( 'all-products', [
+            'title' => 'Все товары',
+            'products' => $response->products
+        ] )->render ();
+    }
 }
