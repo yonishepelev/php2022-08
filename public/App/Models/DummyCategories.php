@@ -28,9 +28,9 @@ class DummyCategories
 
     }
 
-    public function allProducts($skip = 0)
+    public function allProducts($limit, $skip = 0)
     {
-        $url = 'https://dummyjson.com/products?skip='.$skip;
+        $url = 'https://dummyjson.com/products?skip='.$skip.'&limit='.$limit;
         $data = file_get_contents ( $url );
         return json_decode ($data);
     }
