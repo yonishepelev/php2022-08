@@ -1,11 +1,23 @@
 @extends('layout.main')
 @section('paging')
+    <div class="container">
+        <div>По {{$limit}} товаров</div>
+        <form class="row mt-2">
+            <select class="form-select w-25 " name="limit">
+                @for($i = 10; $i <=40; $i += 10)
+                    <option value="{{$i}}" {{$selected = $limit === $i ? 'selected' : ''}}>{{$i}}</option>
+                @endfor
+            </select>
+            <button class="btn btn-primary mx-2 w-auto">Отправить</button>
+        </form>
+    </div>
     <nav class="mt-3" aria-label="Page navigation example">
+
         <ul class="pagination">
             @for($i = 1; $i <= $total_pages; $i++)
                 @php($active =  $i === (int) $currentPage ? 'active' : '')
                 <li class="page-item {{$active}}">
-                    <a class="page-link" href="/all-products?page={{$i}}">{{$i}}</a>
+                    <a class="page-link" href="/all-products?page={{$i}}&limit={{$limit}}">{{$i}}</a>
                 </li>
             @endfor
         </ul>
@@ -16,7 +28,7 @@
 
     <div class="container">
         <div>
-            <a href="/categories">Back</a>
+            <a class="btn btn-outline-info" role="button" href="/categories">Back</a>
         </div>
         @yield('paging')
         @foreach($products as $product)

@@ -59,6 +59,9 @@ class Categories
         else
             $currentPage = 1;
 
+        if (isset($_GET['limit']))
+            $limit = (int) $_GET['limit'];
+
         $skip = ($currentPage - 1) * $limit;
         $response = $categories->allProducts ( $limit, $skip );
         $total_pages =  ceil ( $response->total / $limit );
@@ -67,7 +70,8 @@ class Categories
             'title' => 'Все товары',
             'products' => $response->products,
             'total_pages' => $total_pages,
-            'currentPage' => $currentPage
+            'currentPage' => $currentPage,
+            'limit'=> $limit
         ] )->render ();
     }
 }
