@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Categories;
+use App\Http\Controllers\Test;
 use App\Tools\Router;
 
 Router::setRoute ( '/', function () {
@@ -26,4 +27,9 @@ Router::setRoute ( "/product/{productId}", function ($matches) { // http://local
 Router::setRoute ( "/all-products", function () { //http://localhost:8000/all-products
     $controller = new Categories();
     $controller->getAllProducts ();
+} );
+
+Router::setRoute ( "/test", function () { //http://localhost:8000/test
+    $controller = new Test();
+    $controller->get();
 } );
