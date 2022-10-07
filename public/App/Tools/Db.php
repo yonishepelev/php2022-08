@@ -37,9 +37,14 @@ class Db
         return self::$instance;
     }
 
-    public function query($sql)
+    public function query($sql, $params = [])
     {
-        return $this->connection->query ($sql)->fetchAll (PDO::FETCH_CLASS);
+        if (count ( $params ) === 0)
+            return $this->connection->query ( $sql )->fetchAll ( PDO::FETCH_CLASS );
+        $sth = $this->connection->prepare ( $sql, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY] );
+        $sth->execute ( $params );
+        return $sth->fetchAll ( PDO::FETCH_CLASS );
     }
+
 
 }
