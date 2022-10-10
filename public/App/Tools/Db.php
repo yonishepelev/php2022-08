@@ -17,7 +17,7 @@ class Db
         $password = 'password';
         $database = 'our_shop';
         $port = 3306;
-        $conn = new PDO( "mysql:host=$hostname;dbname=$database;port=$port", $username, $password );
+        $conn = new PDO( "mysql:host=$hostname;charset=utf8;dbname=$database;port=$port", $username, $password );
         $conn->setAttribute ( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
         $this->connection = $conn;
 
