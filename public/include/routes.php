@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Categories;
+use App\Http\Controllers\ImportData;
 use App\Http\Controllers\Test;
 use App\Tools\Router;
 
@@ -32,4 +33,9 @@ Router::setRoute ( "/all-products", function () { //http://localhost:8000/all-pr
 Router::setRoute ( "/test", function () { //http://localhost:8000/test
     $controller = new Test();
     $controller->get();
+} );
+
+Router::setRoute ( "/admin/import-data", function () { //http://localhost:8000/admin/import-data
+    $controller = new ImportData();
+    $controller->getImportData();
 } );

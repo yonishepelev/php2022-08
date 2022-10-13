@@ -63,7 +63,7 @@ class Categories
             $limit = (int) $_GET['limit'];
 
         $skip = ($currentPage - 1) * $limit;
-        $response = $categories->allProducts ( $limit, $skip );
+        $response = $categories->allProductsPaged ( $limit, $skip );
         $total_pages =  ceil ( $response->total / $limit );
 
         echo $blade->make ( 'all-products', [

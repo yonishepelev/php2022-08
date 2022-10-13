@@ -28,11 +28,31 @@ class DummyCategories
 
     }
 
-    public function allProducts($limit, $skip = 0)
+    public function allProductsPaged($limit, $skip = 0)
     {
         $url = 'https://dummyjson.com/products?skip='.$skip.'&limit='.$limit;
         $data = file_get_contents ( $url );
         return json_decode ($data);
+    }
+
+    public static function allProducts(): array
+    {
+        $dummyCategories = new self();
+        $skip = 0;
+        $limit = 30;
+
+        $response = $dummyCategories->allProductsPaged ( $limit, $skip );
+        $products = $response->products;
+        $totalAmount = $response->total;
+        while (count ( $products ) < $totalAmount) {
+            $skip = $skip + $limit;
+            $response = $dummyCategories->allProductsPaged ( $limit, $skip );
+            $products = array_merge ( $products, $response->products );
+        }
+
+        //print_rr ( $totalAmount );
+        //print_rr ( $products );
+        return $products;
     }
 
 }
