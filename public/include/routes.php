@@ -13,7 +13,7 @@ Router::setRoute ( "/categories", function () { //http://localhost:8000/categori
     $controller = new Categories();
     $controller->getAllCategories ();
 } );
-Router::setRoute ( "/category/{categoryName}", function ($matches) { // http://localhost:8000/category/laptops
+Router::setRoute ( "/category/{categoryId}", function ($matches) { // http://localhost:8000/category/laptops
     //echo 'я страница конкретной категории ' . $matches[1];
     $controller = new Categories();
     $controller->getCategoryItems ($matches[1]);

@@ -51,4 +51,25 @@ class Product
             }
         }
     }
+    public static function categoryProducts ($categoryId){
+        $con = Db::connect ();
+        $sql = "SELECT p.*, c.title as categoryName FROM products as p
+LEFT JOIN categories as c ON p.categoryId = c.id
+WHERE p.categoryId = :categoryId";
+        $result =  $con->query ( $sql, [
+            'categoryId' => $categoryId
+        ] );
+        foreach ($result as $product){
+            $productId = $product->id;
+            $images = Image::productImages ($productId);
+            $imagesUrls = [];
+            foreach ($images  as $image){
+                $imagesUrls[] = $image->url;
+
+            }
+            $product->images = $imagesUrls;
+        }
+        return $result;
+
+    }
 }

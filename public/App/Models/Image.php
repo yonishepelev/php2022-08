@@ -28,4 +28,15 @@ class Image
             }
         }
     }
+
+    public static function productImages($productId)
+    {
+        $con = Db::connect ();
+        $sql = "SELECT * FROM images as i
+where i.productId = :productId";
+        return $con->query ( $sql, [
+            'productId' => $productId
+        ] );
+
+    }
 }

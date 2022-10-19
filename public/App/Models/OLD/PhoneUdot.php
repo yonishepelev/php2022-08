@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\OLD;
 
 class PhoneUdot extends Phone
 {
@@ -25,11 +25,13 @@ class PhoneUdot extends Phone
 
     public function getBox(): int
     {
-        self::$box;
+        return self::$box;
     }
 
-    public function setBox(int $number): void
-    self::$setbox = $number;
+    public function setBox(int $number): void{
+        self::$setbox = $number;
+    }
+
     public function getVolume()
     {
         $volume = $this->length * $this->width * $this->height;

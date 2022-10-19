@@ -33,4 +33,27 @@ class Category
         }
         return $result;
     }
+
+    public static function getCategoriesList()
+    {
+        $con = Db::connect ();
+        $sql = "SELECT c.* FROM categories as c";
+        return $con->query ( $sql );
+
+    }
+
+    public static function getCategoryById($categoryId)
+    {
+        $con = Db::connect ();
+        $sql = "SELECT * FROM categories as c
+where c.id = :id";
+        $result =  $con->query ( $sql, [
+            'id' => $categoryId
+        ] );
+        if (count($result) > 0)
+            return $result[0];
+        else
+            return false;
+
+    }
 }

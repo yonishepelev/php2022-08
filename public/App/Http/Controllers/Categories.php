@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\DummyCategories;
+use App\Models\Product;
 use Jenssegers\Blade\Blade;
 
 
@@ -12,26 +14,24 @@ class Categories
     {
 
         $blade = new Blade( 'views', 'cache' );
-        $categories = new DummyCategories();
-        $arrayAllCategories = $categories->getAllCategories ();
-        //print_rr ( 'Я контроллер категорий');
-        //print_rr ($arrayAllCategories);
+        $dbCategories = Category::getCategoriesList ();
+
         echo $blade->make ( 'categories', [
             'title' => 'Список категорий',
-            'arrayAllCategories' => $arrayAllCategories
+            'dbCategories' => $dbCategories
         ] )->render ();
 
     }
 
-    public function getCategoryItems($selectedCategory)
+    public function getCategoryItems($selectedCategoryId)
     {
         $blade = new Blade( 'views', 'cache' );
-        $categories = new DummyCategories();
-        $categoryItems = $categories->categoryItems ( $selectedCategory );
-        print_rr ( $categoryItems->products[0] );
+        $dbCategoryItems = Product::categoryProducts ($selectedCategoryId);
+        $currentCategory = Category::getCategoryById ($selectedCategoryId);
+
         echo $blade->make ( 'category-items', [
-            'title' => 'Список товаров в категории ' . $selectedCategory,
-            'products' => $categoryItems->products
+            'title' => 'Список товаров в категории ' . $currentCategory->title,
+            'products' => $dbCategoryItems
         ] )->render ();
 
 

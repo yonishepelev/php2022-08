@@ -43,10 +43,18 @@ GROUP BY pd.id, pd.title, ct.title
 ORDER BY pd.title ASC;
 
 
-SELECT pd.id , pd.title, ct.title,
-       GROUP_CONCAT( DISTINCT im.url SEPARATOR ';')
+SELECT pd.id,
+       pd.title,
+       ct.title,
+       AVG(pd.price),
+       GROUP_CONCAT(DISTINCT im.url SEPARATOR ',')
 FROM products as pd
          LEFT JOIN images as im ON im.productId = pd.id
          LEFT JOIN categories as ct ON ct.id = pd.categoryId
 GROUP BY pd.id, pd.title, ct.title;
+
+SELECT *
+FROM products as pd
+ORDER BY pd.id
+LIMIT 30 OFFSET 90;
 
