@@ -36,6 +36,10 @@ class Db
         self::$instance = new self();
         return self::$instance;
     }
+    public function emulatePrepares(bool $flag)
+    {
+        $this->connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, $flag);
+    }
 
     public function query($sql, $params = [])
     {
