@@ -26,8 +26,8 @@ class Categories
     public function getCategoryItems($selectedCategoryId)
     {
         $blade = new Blade( 'views', 'cache' );
-        $dbCategoryItems = Product::categoryProducts ($selectedCategoryId);
-        $currentCategory = Category::getCategoryById ($selectedCategoryId);
+        $dbCategoryItems = Product::categoryProducts ( $selectedCategoryId );
+        $currentCategory = Category::getCategoryById ( $selectedCategoryId );
 
         echo $blade->make ( 'category-items', [
             'title' => 'Список товаров в категории ' . $currentCategory->title,
@@ -40,38 +40,50 @@ class Categories
     public function getProduct($productId)
     {
         $blade = new Blade( 'views', 'cache' );
-        $categories = new DummyCategories();
-        $product = $categories->product ( $productId );
-        print_rr ( $product );
-        echo $blade->make ( 'product', [
-            'title' => $product->title,
-            'product' => $product
-        ] )->render ();
+        //$categories = new DummyCategories();
+        //$product = $categories->product ( $productId );
+        //print_rr ( $product );
+        $dbProduct = Product::product ( $productId );
+        if ($dbProduct) {
+            echo $blade->make ( 'product', [
+                'title' => $dbProduct->title,
+                'product' => $dbProduct
+            ] )->render ();
+        } else {
+            http_response_code (404);
+            echo $blade->make ( 'product', [
+                'title' => 'Товар не найден',
+                'product' => false
+            ] )->render ();
+        }
     }
 
     public function getAllProducts()
     {
         $limit = 30;
         $blade = new Blade( 'views', 'cache' );
-        $categories = new DummyCategories();
+//        $categories = new DummyCategories();
         if (isset( $_GET['page'] ))
             $currentPage = $_GET['page'];
         else
             $currentPage = 1;
 
-        if (isset($_GET['limit']))
-            $limit = (int) $_GET['limit'];
+        if (isset( $_GET['limit'] ))
+            $limit = (int)$_GET['limit'];
 
         $skip = ($currentPage - 1) * $limit;
-        $response = $categories->allProductsPaged ( $limit, $skip );
-        $total_pages =  ceil ( $response->total / $limit );
+//        $response = $categories->allProductsPaged ( $limit, $skip );
+
+        $responseDb = Product::allProducts ($limit, $skip);
+
+        $total_pages = ceil ( $responseDb['total'] / $limit );
 
         echo $blade->make ( 'all-products', [
             'title' => 'Все товары',
-            'products' => $response->products,
+            'products' => $responseDb['products'],
             'total_pages' => $total_pages,
             'currentPage' => $currentPage,
-            'limit'=> $limit
+            'limit' => $limit
         ] )->render ();
     }
 }
